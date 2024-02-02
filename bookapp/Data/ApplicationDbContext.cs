@@ -2,7 +2,7 @@
 //Db context class is the root class for Entity framework core, using this we will be accessing Entity framework.
 
 
-
+using bookapp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace bookapp.Data
@@ -16,6 +16,7 @@ namespace bookapp.Data
         {
             
         }
+        public DbSet<Category> categories { get; set; }
 
 
     }
