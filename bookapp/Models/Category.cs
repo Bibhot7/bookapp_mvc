@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace bookapp.Models
 {
@@ -9,7 +10,11 @@ namespace bookapp.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        //adding validation server side.
+        [DisplayName("Category Name")]
         public string Name { get; set; }
+        [DisplayName("Display Order")]
+        //adding validation server side.
         public int Display0rder { get; set; }   
     }
 }

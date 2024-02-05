@@ -18,6 +18,26 @@ namespace bookapp.Controllers
             List <Category> objCategoryList = _db.Categories.ToList();
             //Passing the category in the view.
             return View(objCategoryList);
+
+
+        }
+        //Creating an action method for (Create new category method which will be invocked calling the view).
+        
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Category obj)
+        {
+            //Creating a category and adding a category.
+            // checking for validation
+            if (ModelState.IsValid) {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+           return View();
         }
     }
 }
