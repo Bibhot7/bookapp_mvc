@@ -14,7 +14,8 @@ namespace bookapp.Models
         [DisplayName("Category Name")]
         public string Name { get; set; }
         [DisplayName("Display Order")]
-        //adding validation server side.
+        [Range(1, 100, ErrorMessage = "Display order must be between 1-100")]
+        //adding validation server side and displaying the custom error message.
         public int Display0rder { get; set; }   
     }
 }
