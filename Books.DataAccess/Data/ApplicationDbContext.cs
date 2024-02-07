@@ -5,9 +5,9 @@
 using bookapp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace bookapp.Data
+namespace bookapp.DataAccess.Data
 {
-    
+
 
     public class ApplicationDbContext : DbContext
     {

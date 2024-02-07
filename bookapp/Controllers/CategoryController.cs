@@ -1,8 +1,10 @@
-﻿using bookapp.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿
+using bookapp.DataAccess.Data;
 using bookapp.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace bookapp.Controllers
+
+namespace bookapp.DataAccess.Controllers
 {
     public class CategoryController : Controller
     {
