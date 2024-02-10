@@ -1,12 +1,13 @@
-﻿
-using bookapp.DataAccess.Data;
+﻿using bookapp.DataAccess.Data;
 using bookapp.DataAccess.Repository.IRepository;
 using bookapp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace bookapp.DataAccess.Controllers
+namespace bookapp.Areas.Admin.Controllers
+   
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         //Getting the implementation of ApplicationDbContext.
@@ -14,50 +15,53 @@ namespace bookapp.DataAccess.Controllers
         public CategoryController(IUnitOfWork unitOfWork)
 
         {
-                _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             //Retriving all the categories.
-            List <Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             //Passing the category in the view.
             return View(objCategoryList);
 
 
         }
         //Creating an action method for (Create new category method which will be invocked calling the view).
-        
+
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
         public IActionResult Create(Category obj)
-            
+
         {
 
             //Creating a category and adding a category.
             // checking for validation
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
                 //Adding message for the functionality after implementation, using TempData.
                 TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
-           return View();
+            return View();
         }
         public IActionResult Edit(int? id)
-        {   if(id==null || id == 0)
+        {
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id==id);
-            if (categoryFromDb == null) {
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
+            if (categoryFromDb == null)
+            {
                 return NotFound();
 
             }
-            
+
             return View(categoryFromDb);
         }
         [HttpPost]
@@ -65,7 +69,7 @@ namespace bookapp.DataAccess.Controllers
 
         {
 
-           //Updating a category
+            //Updating a category
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(obj);
@@ -100,13 +104,13 @@ namespace bookapp.DataAccess.Controllers
                 return NotFound();
             }
             _unitOfWork.Category.Remove(obj);
-           _unitOfWork.Save();
+            _unitOfWork.Save();
             //Adding message for the functionality after implementation, using TempData.
             TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
 
 
-           
+
         }
     }
 }

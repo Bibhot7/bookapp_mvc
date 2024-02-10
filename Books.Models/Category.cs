@@ -11,6 +11,7 @@ namespace bookapp.Models
         public int Id { get; set; }
         [Required]
         //adding validation server side.
+        [MaxLength(30)]
         [DisplayName("Category Name")]
 
         public required string Name { get; set; }
