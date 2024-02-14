@@ -9,6 +9,7 @@ namespace bookapp.DataAccess.Repository.IRepository
 {
     public interface IProductRepository : IRepository<Product>
     {
+        IEnumerable<Product> GetAll(string includeProperties = null);
         void Update(Product obj);
 
     }

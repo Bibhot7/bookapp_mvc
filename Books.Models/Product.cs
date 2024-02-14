@@ -5,6 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using bookapp.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace bookapp.Models
 {
@@ -15,12 +18,12 @@ namespace bookapp.Models
         [Required]
        
         
-        public required string Title { get; set; }
-        public required string Description { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         [Required]
-        public required string ISBN { get; set; }
+        public string ISBN { get; set; }
         [Required]
-        public required string Author { get; set; }
+        public string Author { get; set; }
         [Required]
         [Display(Name = "List Price")]
         [Range(1,1000)]
@@ -40,5 +43,17 @@ namespace bookapp.Models
         [Display(Name = "Price for 100+")]
         [Range(1, 1000)]
         public double Price100 { get; set; }
+
+        //Assosication between product and category.
+        //Foreign key relations between product and category table.
+
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        [ValidateNever]
+        public Category Category { get; set; }
+        [ValidateNever]
+        public string ImageUrl { get; set; }    
+
+
     }
 }
