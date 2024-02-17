@@ -4,12 +4,13 @@
 
 using bookapp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace bookapp.DataAccess.Data
 {
 
 
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         //passing the connection string.
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -22,6 +23,8 @@ namespace bookapp.DataAccess.Data
         //Seeding data using Entity framework.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", Display0rder = 1 },
                 new Category { Id = 2, Name = "SciFi", Display0rder = 2 },
