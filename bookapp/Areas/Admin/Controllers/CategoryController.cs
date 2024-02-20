@@ -1,6 +1,8 @@
 ﻿using bookapp.DataAccess.Data;
 using bookapp.DataAccess.Repository.IRepository;
 using bookapp.Models;
+using bookapp.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,6 +10,7 @@ namespace bookapp.Areas.Admin.Controllers
    
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class CategoryController : Controller
     {
         //Getting the implementation of ApplicationDbContext.
